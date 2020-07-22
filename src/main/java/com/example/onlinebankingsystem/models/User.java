@@ -19,12 +19,13 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
+@Table(name = "users")
 public class User extends AbstractModel implements UserDetails {
 
 
     private String username;
     private String password;
-    private String firstName;
+        private String firstName;
     private String lastName;
 
     @Column(name = "email", nullable = false, unique = true)
