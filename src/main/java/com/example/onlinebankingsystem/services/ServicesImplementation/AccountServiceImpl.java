@@ -36,7 +36,7 @@ public class AccountServiceImpl implements AccountService {
     public PrimaryAccount createPrimaryAccount() {
         PrimaryAccount primaryAccount = new PrimaryAccount();
         primaryAccount.setAccountBalance(new BigDecimal(0.0));
-        primaryAccount.setAccountNumber(accountGen());
+        primaryAccount.setAccountNumber(primaryAccountGen());
 
         primaryAccountRepository.save(primaryAccount);
 
@@ -47,7 +47,7 @@ public class AccountServiceImpl implements AccountService {
     public SavingsAccount createSavingsAccount() {
         SavingsAccount savingsAccount = new SavingsAccount();
         savingsAccount.setAccountBalance(new BigDecimal(0.0));
-        savingsAccount.setAccountNumber(accountGen());
+        savingsAccount.setAccountNumber(savingsAccountGen());
 
         savingsAccountRepository.save(savingsAccount);
 
@@ -129,8 +129,14 @@ public class AccountServiceImpl implements AccountService {
         transactionService.saveSavingsWithdrawTransaction(savingsTransaction);
     }
 
-    private int accountGen() {
-        return ++nextAccountNumber;
+   }
+
+    private int primaryAccountGen() {
+        return primaryAccountNumber+ (int) (Math.random() * 2000);
+    }
+
+    private int savingsAccountGen() {
+        return savingsAccountNumber+ (int) (Math.random() * 2000);
     }
 
 
